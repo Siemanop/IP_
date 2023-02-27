@@ -1,0 +1,41 @@
+<?php
+include 'conn.php';
+
+$user_id = $_POST['user_id'];
+$fname = $_POST['fname'];
+$lname = $_POST['lname'];
+$gender = $_POST['gender'];
+$birth = $_POST['birth'];
+$faculty = $_POST['faculty'];
+$branch = $_POST['branch'];
+$phone = $_POST['phone'];
+$email = $_POST['email'];
+$address = $_POST['address'];
+
+
+$sql = "UPDATE student SET 
+stu_fname = '$fname',
+stu_lname = '$lname',
+stu_gender = '$gender',
+stu_birth = '$birth',
+stu_phone = '$phone',
+stu_address = '$address',
+stu_email = '$email',
+fac_id = '$faculty'
+WHERE user_id='$user_id' ";
+
+$result = mysqli_query($conn,$sql);
+
+if($result){
+    echo "Data updated successfully.";
+    echo "<script>alert('อัพเดทข้อมูลเรียบร้อย');</script>";
+    echo "<script>window.location='show_stu.php';</script>";
+}else{
+    echo "Error updating data: " . mysqli_error($conn);
+    echo "<script>alert('ไม่สามารถอัพเดทข้อมูลได้');</script>";
+}
+
+mysqli_close($conn);
+
+?> 
+I hope that helps!
